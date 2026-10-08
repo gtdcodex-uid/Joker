@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #502828, #3a1c1c);
+    transition: background 0.5s ease;
+}
+
+.card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 450px; /* Better than vw for responsiveness */
+}
+
+#emoji {
+    font-size: 4rem;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.joke {
+    font-size: 1.2rem;
+    color: #444;
+    min-height: 80px; /* Keeps card height stable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    transition: opacity 0.3s ease;
+}
+
+.btn-group {
+    margin-top: 20px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+#btn {
+    background-color: #502828;
+    color: white;
+}
+
+#btn:hover { transform: translateY(-2px); background-color: #6e3a3a; }
+#btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+#stop-btn {
+    background-color: #ff4757;
+    color: white;
+    margin-left: 10px;
+}
+
+.hidden { display: none; }
+
+/* Animations */
+.animate-pop { animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.fade-in { animation: fadeIn 0.5s ease-in; }
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media screen and (max-width: 1034px) and (min-width: 481px) {
+    .card {
+        width: 80vw; /* Use more screen width on tablets */
+        padding: 2rem;
+    }
+
+    #btn {
+        width: 50%; /* Make button a percentage of the card instead of vw */
+        font-size: 1.1rem;
+    }
+
+    .joke {
+        font-size: 1.2rem; /* Keep text legible */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px; /* Prevent card from touching screen edges */
+    }
+
+    .card {
+        width: 95%; /* Nearly full width on mobile */
+        padding: 1.5rem 1rem;
+        border-radius: 15px; /* Slightly smaller radius looks better on small screens */
+    }
+
+    #emoji {
+        font-size: 2.5rem; /* Shrink emoji so it doesn't push text off screen */
+        height: 60px;
+    }
+
+    .joke {
+        font-size: 1rem; /* Smaller font to accommodate long jokes */
+        min-height: 100px; /* Give it more space for multi-line jokes */
+    }
+
+    #btn {
+        width: 100%; /* Full width button is much easier to tap on mobile */
+        height: 50px; /* Taller touch target for thumbs */
+        font-size: 1rem;
+    }
+    
+    #stop-btn {
+        margin-left: 0;
+        margin-top: 10px; /* Stack buttons vertically on very small screens */
+        width: 100%;
+    }
+}
